@@ -1,7 +1,9 @@
 Package.describe({
-  summary: "IBM Bluemix OAuth flow",
-  version: "1.0.0",
-  git: 'https://github.com/oneibmcloud/bluemix.git'
+  name: 'ibmcloud:bluemix',
+  version: '1.0.0',
+  summary: 'IBM Bluemix OAuth flow',
+  git: 'https://github.com/oneibmcloud/bluemix.git',
+  documentation: 'README.md'
 });
 
 Package.onUse(function(api) {
