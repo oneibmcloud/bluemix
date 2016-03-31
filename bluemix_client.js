@@ -20,16 +20,21 @@ Bluemix.requestCredential = function (options, credentialRequestCompleteCallback
   }
   var credentialToken = Random.secret();
 
-  var scope = (options && options.requestPermissions) || ['profile'];
+  var scope = (options && options.requestPermissions) || ['openid'];
+  //var scope = (options && options.requestPermissions) || ['profile'];
   var flatScope = _.map(scope, encodeURIComponent).join('+');
 
   var loginStyle = OAuth._loginStyle('bluemix', config, options);
+  var redirectUri = config.redirectUri || OAuth._redirectUri('bluemix', config);
 
+  console.log('redirectUri',redirectUri)
+
+    // 'https://idaas.ng.bluemix.net/sps/oauth20sp/oauth20/authorize' +
   var loginUrl =
-    'https://idaas.ng.bluemix.net/sps/oauth20sp/oauth20/authorize' +
+    'https://login.eu-gb.bluemix.net/UAALoginServerWAR/oauth/authorize' +
     '?client_id=' + config.clientId +
     '&scope=' + flatScope +
-    '&redirect_uri=' + OAuth._redirectUri('bluemix', config) +
+    '&redirect_uri=' + redirectUri +
     '&response_type=code' +
     '&state=' + OAuth._stateParam(loginStyle, credentialToken);
 
