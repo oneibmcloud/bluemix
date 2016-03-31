@@ -1,6 +1,6 @@
 Package.describe({
   name: 'ibmcloud:bluemix',
-  version: '1.0.0',
+  version: '1.0.1',
   summary: 'IBM Bluemix OAuth flow',
   git: 'https://github.com/oneibmcloud/bluemix.git',
   documentation: 'README.md'
