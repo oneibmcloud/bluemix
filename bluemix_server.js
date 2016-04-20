@@ -13,7 +13,7 @@ OAuth.registerService('bluemix', 2, null, function(query) {
 
   return {
     serviceData: {
-      id: identity.userUniqueID,
+      id: identity.user_id,
       accessToken: OAuth.sealSecret(accessToken),
       refreshToken: OAuth.sealSecret(refreshToken),
       email: identity.email || '',
