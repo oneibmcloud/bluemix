@@ -26,12 +26,10 @@ Bluemix.requestCredential = function (options, credentialRequestCompleteCallback
 
   var loginStyle = OAuth._loginStyle('bluemix', config, options);
   var redirectUri = config.redirectUri || OAuth._redirectUri('bluemix', config);
-
   console.log('redirectUri',redirectUri)
+  var url = config.loginUrl || 'https://login.eu-gb.bluemix.net/UAALoginServerWAR/oauth/authorize';
 
-    // 'https://idaas.ng.bluemix.net/sps/oauth20sp/oauth20/authorize' +
-  var loginUrl =
-    'https://login.eu-gb.bluemix.net/UAALoginServerWAR/oauth/authorize' +
+  var loginUrl = url  +
     '?client_id=' + config.clientId +
     '&scope=' + flatScope +
     '&redirect_uri=' + redirectUri +
