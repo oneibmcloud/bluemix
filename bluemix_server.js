@@ -33,14 +33,14 @@ var getAccessToken = function (query) {
   var config = ServiceConfiguration.configurations.findOne({service: 'bluemix'});
   if (!config)
     throw new ServiceConfiguration.ConfigError();
-
+   
   var basicAuth = 'Basic ' + new Buffer(config.clientId + ':' + config.secret).toString('base64');
   var redirectUri = config.redirectUri || OAuth._redirectUri('bluemix', config);
   var response;
+  var tokenUrl = config.tokenUrl || "https://uaa.eu-gb.bluemix.net/oauth/token";
   try {
     response = HTTP.post(
-      // "https://idaas.ng.bluemix.net/sps/oauth20sp/oauth20/token", {
-      "https://uaa.eu-gb.bluemix.net/oauth/token", {
+        tokenUrl, {
         headers: {
           Accept: 'application/json',
           "User-Agent": userAgent,
@@ -67,9 +67,14 @@ var getAccessToken = function (query) {
 };
 
 var getIdentity = function (accessToken) {
+  // get the config
+  var config = ServiceConfiguration.configurations.findOne({service: 'bluemix'});
+  if (!config)
+    throw new ServiceConfiguration.ConfigError();
+
   try {
-    var url = "https://uaa.eu-gb.bluemix.net/userinfo?access_token=" + accessToken;
-    //var url = "https://idaas.ng.bluemix.net/idaas/resources/profile.jsp?access_token=" + accessToken;
+    var userInfoUrl = config.userInfoUrl || "https://uaa.eu-gb.bluemix.net/userinfo";
+    var url = userInfoUrl + "?access_token=" + accessToken;
     return JSON.parse(HTTP.get(url).content);
   } catch (err) {
     throw _.extend(new Error("Failed to fetch identity from Bluemix. " + err.message),
