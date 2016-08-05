@@ -1,0 +1,18 @@
+{
+  "name": "bluemix",
+  "version": "1.0.4",
+  "description": "IBM Bluemix OAuth flow",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneibmcloud/bluemix.git"
+  },
+  "author": "IBM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oneibmcloud/bluemix/issues"
+  },
+  "homepage": "https://github.com/oneibmcloud/bluemix#readme"
+}
